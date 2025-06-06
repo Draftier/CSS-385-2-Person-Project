@@ -37,20 +37,21 @@ public class Player_Controls : MonoBehaviour
             {
                 if (guns[i] != null)
                 {
-                    guns[i].isShooting = false;
+                    // guns[i].isShooting = false;
+                    guns[i].StopShoot();
                 }
             }
         }
         
         if (Input.GetKey(KeyCode.W))
         {
-            speed += 10 * Time.deltaTime;
-            speed = Mathf.Clamp(speed, 0, 8f); // Limit speed to a maximum of 100
+            speed += 2 * Time.deltaTime;
+            speed = Mathf.Clamp(speed, 0, 3f); // Limit speed to a maximum of 100
         }
         else if (Input.GetKey(KeyCode.S))
         {
-            speed -= 5 * Time.deltaTime;
-            speed = Mathf.Clamp(speed, -80f, 8f); // Limit speed to a maximum of 100
+            speed -= 3 * Time.deltaTime;
+            speed = Mathf.Clamp(speed, -80f, 3f); // Limit speed to a maximum of 100
         }
         transform.Translate(forward * speed * Time.deltaTime, Space.World);
     }
