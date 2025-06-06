@@ -8,11 +8,13 @@ public abstract class Gun : MonoBehaviour
     public GameObject projectilePrefab;
     public float fireRate;
     public abstract IEnumerator shootingCoroutine();
+    public float maxDistance;
     private Coroutine shootingCoroutineInstance;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        Projectile projectile = projectilePrefab.GetComponent<Projectile>();
+        projectile.maxDistance = maxDistance;
     }
 
     // Update is called once per frame

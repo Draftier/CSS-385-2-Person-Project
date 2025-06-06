@@ -225,6 +225,7 @@ MonoBehaviour:
   isShooting: 0
   projectilePrefab: {fileID: 6948048368575796233, guid: 59cf94e9ad943cc488ac4425c5b9926a, type: 3}
   fireRate: 0.2
+  maxDistance: 10
   firePoint: {fileID: 804084321}
 --- !u!60 &55079753
 PolygonCollider2D:
@@ -639,6 +640,7 @@ MonoBehaviour:
   isShooting: 0
   projectilePrefab: {fileID: 6948048368575796233, guid: 59cf94e9ad943cc488ac4425c5b9926a, type: 3}
   fireRate: 2
+  maxDistance: 5
   firePoint: {fileID: 471215039}
 --- !u!60 &471215042
 PolygonCollider2D:
@@ -916,6 +918,7 @@ MonoBehaviour:
   isShooting: 0
   projectilePrefab: {fileID: 6948048368575796233, guid: 59cf94e9ad943cc488ac4425c5b9926a, type: 3}
   fireRate: 2
+  maxDistance: 5
   firePoint: {fileID: 995237331}
 --- !u!4 &995237331
 Transform:
@@ -1143,6 +1146,7 @@ MonoBehaviour:
   isShooting: 0
   projectilePrefab: {fileID: 6948048368575796233, guid: 59cf94e9ad943cc488ac4425c5b9926a, type: 3}
   fireRate: 2
+  maxDistance: 5
   firePoint: {fileID: 1019099654}
 --- !u!60 &1019099657
 PolygonCollider2D:
@@ -1443,6 +1447,7 @@ MonoBehaviour:
   isShooting: 0
   projectilePrefab: {fileID: 6948048368575796233, guid: 59cf94e9ad943cc488ac4425c5b9926a, type: 3}
   fireRate: 2
+  maxDistance: 5
   firePoint: {fileID: 1157816018}
 --- !u!60 &1157816021
 PolygonCollider2D:
@@ -1600,6 +1605,7 @@ MonoBehaviour:
   isShooting: 0
   projectilePrefab: {fileID: 6948048368575796233, guid: 59cf94e9ad943cc488ac4425c5b9926a, type: 3}
   fireRate: 2
+  maxDistance: 5
   firePoint: {fileID: 1454793957}
 --- !u!60 &1454793960
 PolygonCollider2D:
