@@ -51,11 +51,15 @@ public class Projectile : MonoBehaviour
             // Handle collision with enemy
             Destroy(gameObject); // Destroy the projectile on collision
         }
+        else if (other.CompareTag("Planet"))
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Projectile1"))
+        if (other.gameObject.CompareTag("Projectile"))
         {
             Physics2D.IgnoreCollision(GetComponent<Collider2D>(), other.collider);
         }

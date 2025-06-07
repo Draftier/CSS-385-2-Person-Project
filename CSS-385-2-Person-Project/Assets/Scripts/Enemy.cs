@@ -62,7 +62,7 @@ public abstract class Enemy : MonoBehaviour
         transform.position += (Vector3)direction * speed * Time.deltaTime;
 
         // 3. Rotate to face target (optional, visual only)
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
-        transform.rotation = Quaternion.Euler(0, 0, angle);
+        // float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
+        // transform.rotation = Quaternion.Euler(0, 0, angle);
     }
 }

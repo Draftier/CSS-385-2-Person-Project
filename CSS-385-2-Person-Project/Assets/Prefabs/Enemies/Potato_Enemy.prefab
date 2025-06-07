@@ -186,5 +186,7 @@ MonoBehaviour:
   deathEffect: {fileID: 0}
   flashDuration: 0.1
   target: {fileID: 0}
+  spriteRenderer: {fileID: 1301324379490892869}
+  originalColor: {r: 0, g: 0, b: 0, a: 0}
   isRotating: 0
   spinningFromHit: 0
