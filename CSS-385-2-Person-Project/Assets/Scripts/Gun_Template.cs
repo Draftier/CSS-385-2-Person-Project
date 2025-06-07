@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class Short_Range : Gun
+public class Gun_Template : Gun
 {
     public Transform firePoint; // Assign in Inspector this is where the projectile will be spawned
 

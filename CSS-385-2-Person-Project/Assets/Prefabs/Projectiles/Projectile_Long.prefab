@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -5142127894452600761}
   - component: {fileID: -2081844009242371117}
   m_Layer: 3
-  m_Name: Projectile
+  m_Name: Projectile_Long
   m_TagString: Projectile1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.171, y: 1.553, z: 0.059962634}
-  m_LocalScale: {x: 0.08486719, y: 0.325, z: 1}
+  m_LocalScale: {x: 0.05516367, y: 0.1625, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -80,7 +80,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.9382992, g: 0, b: 0.043137256, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -104,6 +104,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0
   maxDistance: 0
+  damage: 50
 --- !u!61 &-5142127894452600761
 BoxCollider2D:
   m_ObjectHideFlags: 0

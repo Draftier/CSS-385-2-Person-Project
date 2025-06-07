@@ -6,6 +6,7 @@ public class Projectile : MonoBehaviour
     // For now just destroy if out of screen bounds
     public float speed;
     public float maxDistance;
+    public float damage;
     private Vector3 screenBounds;
     Vector3 lastPosition;
 
