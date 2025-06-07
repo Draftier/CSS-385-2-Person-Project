@@ -35,24 +35,30 @@ public class Potato_Enemy : Enemy
 
     public override void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("POop");
         if (other.CompareTag("Planet"))
         {
             Destroy(gameObject);
         }
         else if (other.CompareTag("Projectile"))
         {
-            Debug.Log("Hit by projectile");
-            if (flashCoroutine != null)
-            {
-                StopCoroutine(flashCoroutine);
-            }
-            flashCoroutine = StartCoroutine(FlashWhite());
             Projectile projectile = other.GetComponent<Projectile>();
+            TakeDamage(projectile);
         }
     }
 
-    public override void TakeDamage()
+    public override void TakeDamage(Projectile projectile)
     {
+        if (flashCoroutine != null)
+            {
+                StopCoroutine(flashCoroutine);
+            }
+
+            flashCoroutine = StartCoroutine(FlashWhite());
+            health -= projectile.damage;
+
+            if (health <= 0)
+            {
+                Destroy(gameObject);
+            }
     }
 }

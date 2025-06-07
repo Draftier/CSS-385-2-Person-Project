@@ -14,7 +14,7 @@ public abstract class Enemy : MonoBehaviour
     private int hitCount;
     private int enemyCount;
     public Coroutine flashCoroutine;
-    public abstract void TakeDamage();
+    public abstract void TakeDamage(Projectile projectile);
     public abstract void OnTriggerEnter2D(Collider2D other);
 
     private void Awake()
@@ -26,12 +26,6 @@ public abstract class Enemy : MonoBehaviour
     private void OnDestroy()
     {
         enemyCount--;
-    }
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        originalColor = spriteRenderer.color;
     }
 
     public IEnumerator FlashWhite()
