@@ -4,9 +4,9 @@
 TagManager:
   serializedVersion: 3
   tags:
-  - Projectile1
   - Enemy
   - Planet
+  - Projectile
   layers:
   - Default
   - TransparentFX

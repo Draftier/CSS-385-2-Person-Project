@@ -9,11 +9,11 @@ public abstract class Enemy : MonoBehaviour
     public GameObject deathEffect; // Effect to play on death
     public float flashDuration;
     public Transform target;
-    private SpriteRenderer spriteRenderer; // Reference to the SpriteRenderer component
-    private Color originalColor;
+    public SpriteRenderer spriteRenderer; // Reference to the SpriteRenderer component
+    public Color originalColor;
     private int hitCount;
     private int enemyCount;
-    private Coroutine flashCoroutine;
+    public Coroutine flashCoroutine;
     public abstract void TakeDamage();
     public abstract void OnTriggerEnter2D(Collider2D other);
 

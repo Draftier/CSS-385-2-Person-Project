@@ -9,7 +9,8 @@ public class Potato_Enemy : Enemy
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        originalColor = spriteRenderer.color;
     }
 
     // Update is called once per frame
@@ -34,13 +35,19 @@ public class Potato_Enemy : Enemy
 
     public override void OnTriggerEnter2D(Collider2D other)
     {
+        Debug.Log("POop");
         if (other.CompareTag("Planet"))
         {
             Destroy(gameObject);
         }
         else if (other.CompareTag("Projectile"))
         {
-            StartCoroutine(FlashWhite());
+            Debug.Log("Hit by projectile");
+            if (flashCoroutine != null)
+            {
+                StopCoroutine(flashCoroutine);
+            }
+            flashCoroutine = StartCoroutine(FlashWhite());
             Projectile projectile = other.GetComponent<Projectile>();
         }
     }
