@@ -26,8 +26,14 @@ public class Short_Range : Gun
             // Set the projectile's speed to be used to apply velocity to enemies
             Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
             Projectile proj = projectile.GetComponent<Projectile>();
+
+            proj.speed = projectileSpeed;
+            proj.maxDistance = maxDistance;
+
             proj.speed = 5;
             rb.linearVelocity = firePoint != null ? firePoint.up * projectileSpeed : transform.up * projectileSpeed;
+
+            
 
             yield return new WaitForSeconds(fireRate); // Use fire rate for timing
         }

@@ -16,6 +16,11 @@ public class Projectile : MonoBehaviour
         // screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
     }
 
+    void Awake()
+    {
+        
+    }
+
     // Update is called once per frame
     void Update()
     {
