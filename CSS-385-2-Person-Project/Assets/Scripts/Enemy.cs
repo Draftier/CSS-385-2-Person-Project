@@ -11,15 +11,13 @@ public abstract class Enemy : MonoBehaviour
     public Transform target;
     public SpriteRenderer spriteRenderer; // Reference to the SpriteRenderer component
     public Color originalColor;
-    private int hitCount;
-    private int enemyCount;
+    public static int enemyCount;
     public Coroutine flashCoroutine;
     public abstract void TakeDamage(Projectile projectile);
     public abstract void OnTriggerEnter2D(Collider2D other);
 
     private void Awake()
     {
-        hitCount = 0;
         enemyCount++;
     }
 
