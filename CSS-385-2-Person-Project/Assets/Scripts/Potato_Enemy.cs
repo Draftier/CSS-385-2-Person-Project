@@ -1,5 +1,3 @@
-using System.Collections;
-using UnityEditor.Callbacks;
 using UnityEngine;
 
 public class Potato_Enemy : Enemy
