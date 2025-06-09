@@ -141,18 +141,20 @@ public class Player_Controls : MonoBehaviour
         rb.AddForce(force, ForceMode2D.Impulse);
     }
 
-    public void ProjectileKnockback(Vector2 bulletVel)
-    {
-        Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        rb.AddForce(bulletVel.normalized * 20.0f, ForceMode2D.Impulse);
-    }
+    // public void ProjectileKnockback(Vector2 bulletVel)
+    // {
+    //     Debug.Log("Poop");
+    //     Rigidbody2D rb = GetComponent<Rigidbody2D>();
+    //     rb.AddForce(bulletVel.normalized * 1000000.0f, ForceMode2D.Impulse);
+    // }
 
     public void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("FrenchFryProjectile"))
         {
             Vector2 bulletDirection = other.GetComponent<Rigidbody2D>().linearVelocity;
-            ProjectileKnockback(bulletDirection);
+            ApplyKnockback(bulletDirection.normalized * 20f, knockBackDuration);
+            Destroy(other.gameObject);
         }
     }
 }

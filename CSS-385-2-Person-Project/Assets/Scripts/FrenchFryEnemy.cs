@@ -18,6 +18,11 @@ public class FrenchFryEnemy : Enemy
 
     private float fireCooldown = 0f;
 
+    void Awake()
+    {
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+    }
+
     void Update()
     {
         Vector2 moveDir = (targetPosition.position - transform.position).normalized;

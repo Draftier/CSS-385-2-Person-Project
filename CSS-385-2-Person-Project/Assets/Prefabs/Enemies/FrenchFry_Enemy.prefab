@@ -204,7 +204,7 @@ MonoBehaviour:
   fireRate: 2
   detectionRadius: 5
   desiredDistance: 3
-  moveSpeed: 1
+  moveSpeed: 0.5
 --- !u!50 &4875941832647981549
 Rigidbody2D:
   serializedVersion: 5

@@ -6,6 +6,7 @@ using UnityEngine;
 // Player sprite opacity decreases if hit by projectile
 public class FrenchFryProjectile : MonoBehaviour
 {
+
     // Controls collisions of projectile with player or player's weapon
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -32,17 +33,6 @@ public class FrenchFryProjectile : MonoBehaviour
         // }
         if (other.CompareTag("Player"))
         {
-            // Get velocity of the projectile
-            Rigidbody2D projRb = GetComponent<Rigidbody2D>();
-            Vector2 bulletVelocity = projRb != null ? projRb.linearVelocity : Vector2.zero;
-
-            // Apply knockback to the player
-            Player_Controls playerControls = other.GetComponent<Player_Controls>();
-            if (playerControls != null)
-            {
-                playerControls.ProjectileKnockback(bulletVelocity);
-            }
-
             Destroy(gameObject);
         }
     }

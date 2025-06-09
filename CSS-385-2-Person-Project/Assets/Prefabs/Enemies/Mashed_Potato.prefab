@@ -181,8 +181,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 379993eca68eb774f997d566b88272ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 10000000
-  speed: 1
+  health: 1500
+  speed: 0.2
   enemyProjectile: {fileID: 0}
   deathEffect: {fileID: 0}
   flashDuration: 0.1
@@ -190,7 +190,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 0}
   originalColor: {r: 0, g: 0, b: 0, a: 0}
   shockwaveRadius: 3
-  projectileKnockBackForce: 50
+  projectileKnockBackForce: 100
   playerKnockBackForce: 10
   cooldown: 3
   shockwaveLayerMask:

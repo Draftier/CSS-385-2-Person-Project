@@ -12,6 +12,16 @@ public class Mashed_Potato : Enemy
     private Projectile lastHitProjectile = null;
     public LayerMask shockwaveLayerMask;
 
+    private void Awake()
+    {
+        target = GameObject.FindGameObjectWithTag("Planet").transform;
+    }
+
+    private void Update()
+    {
+        MoveTowardsPlanet();
+    }
+
     private void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
