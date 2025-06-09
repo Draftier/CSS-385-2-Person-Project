@@ -21,12 +21,15 @@ public class FrenchFryEnemy : Enemy
     void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        rb = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        originalColor = spriteRenderer.color;
     }
 
     void Update()
     {
-        Vector2 moveDir = (targetPosition.position - transform.position).normalized;
-        transform.position += (Vector3)moveDir * moveSpeed * Time.deltaTime;
+        // Vector2 moveDir = (targetPosition.position - transform.position).normalized;
+        // transform.position += (Vector3)moveDir * moveSpeed * Time.deltaTime;
 
         float playerDistance = Vector2.Distance(transform.position, player.position);
 

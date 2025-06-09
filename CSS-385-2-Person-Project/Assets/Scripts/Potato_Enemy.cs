@@ -18,7 +18,7 @@ public class Potato_Enemy : Enemy
     // Update is called once per frame
     void Update()
     {
-        MoveTowardsPlanet();
+        // MoveTowardsPlanet();
     }
 
     private void StartSpin()
@@ -37,19 +37,6 @@ public class Potato_Enemy : Enemy
         }
     }
 
-    private IEnumerator SpinFromHit()
-    {
-        spinningFromHit = true;
-        isRotating = true;
-
-
-
-        while (true)
-        {
-            yield return null;
-
-        }
-    }
 
     public override void OnTriggerEnter2D(Collider2D other)
     {

@@ -191,13 +191,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
-  speed: 2
+  speed: 0.4
   enemyProjectile: {fileID: 2030550736235274652, guid: 1470142a3aff3644ab5ac9f20d1b8afe, type: 3}
   deathEffect: {fileID: 0}
   flashDuration: 0.1
   target: {fileID: 696939068476068640, guid: ae435aea0e1f3a2449fec8f8ff920a11, type: 3}
   spriteRenderer: {fileID: 1969824126965539781}
   originalColor: {r: 0, g: 0, b: 0, a: 0}
+  rb: {fileID: 0}
+  canMove: 1
   targetPosition: {fileID: 696939068476068640, guid: ae435aea0e1f3a2449fec8f8ff920a11, type: 3}
   player: {fileID: 0}
   fireForce: 10

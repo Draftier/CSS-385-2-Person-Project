@@ -15,11 +15,12 @@ public class Mashed_Potato : Enemy
     private void Awake()
     {
         target = GameObject.FindGameObjectWithTag("Planet").transform;
+        rb = GetComponent<Rigidbody2D>();
     }
 
     private void Update()
     {
-        MoveTowardsPlanet();
+        // MoveTowardsPlanet();
     }
 
     private void Start()

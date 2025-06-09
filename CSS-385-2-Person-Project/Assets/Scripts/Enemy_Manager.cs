@@ -18,6 +18,13 @@ public class Enemy_Manager : MonoBehaviour
     public static Enemy_Manager Instance;
     private bool isSpawning;
 
+    private int enemiesRemainingToSpawn = 0;
+    public int enemiesAlive;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
     private void Start()
     {
         wave_counter.text = "Wave: 0";
@@ -25,7 +32,7 @@ public class Enemy_Manager : MonoBehaviour
 
     private void Update()
     {
-        if (Enemy.enemyCount == 0)
+        if (!isSpawning && enemiesAlive <= 0)
         {
             SpawnNextWave();
         }
@@ -35,6 +42,8 @@ public class Enemy_Manager : MonoBehaviour
     IEnumerator SpawnWave()
     {
         int total = baseNumber + increasePerWave * (curr_wave - 1);
+        enemiesRemainingToSpawn = total;
+        enemiesAlive = total;
 
         for (int i = 0; i < total; i++)
         {
@@ -90,4 +99,10 @@ public class Enemy_Manager : MonoBehaviour
             isSpawning = true;
         }
     }
+
+    public void OnEnemyDestroyed()
+    {
+        enemiesAlive--;
+    }
+    
 }
