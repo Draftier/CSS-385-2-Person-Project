@@ -28,7 +28,7 @@ public class Potato_Enemy : Enemy
             Rigidbody2D rb = GetComponent<Rigidbody2D>();
 
             // Freeze position but allow rotation
-            rb.constraints = RigidbodyConstraints2D.FreezePosition;
+            // rb.constraints = RigidbodyConstraints2D.FreezePosition;
 
             // Set spin speed in degrees/sec
             rb.angularVelocity = 360f;
