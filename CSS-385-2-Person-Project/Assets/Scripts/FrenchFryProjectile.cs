@@ -1,65 +1,55 @@
+using TMPro;
 using UnityEngine;
 
+// Class used to control the projectile behavior in game
+// Projectile is destroyed when it collides with the player or player's weapon
+// Player sprite opacity decreases if hit by projectile
 public class FrenchFryProjectile : MonoBehaviour
 {
-    [Header("Settings")]
-    public float pushForce = 12f;
-    public float lifetime = 2.5f;
-    public GameObject impactEffect;
-
-    private Vector2 direction;
-    public float speed;
-    private Rigidbody2D rb;
-
-    public void Initialize(Vector2 fireDirection, float projectileSpeed)
-    {
-        direction = fireDirection;
-        speed = projectileSpeed;
-        rb = GetComponent<Rigidbody2D>();
-        Destroy(gameObject, lifetime);
-
-        // Rotate projectile to face direction
-        if (rb.linearVelocity != Vector2.zero) {
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
-            transform.rotation = Quaternion.Euler(0, 0, angle);
-        }
-    }
-
-    void FixedUpdate()
-    {
-        rb.linearVelocity = direction * speed;
-    }
-
+    // Controls collisions of projectile with player or player's weapon
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (!other) return;
+        // // Check if the projectile collides with the player or player's weapon
+        // if (other.CompareTag("Player"))
+        // {
+        //     // If projectile hits the player, destroy the projectile
+        //     // Increment hit count and change player color to indicate hit
 
-        // Player impact
+        //     // Increment hit count and destroy projectile
+        //     Destroy(gameObject);
+        //     PlayerMovement.hitCount++; 
+
+        //     // Change player sprite alpha
+        //     PlayerMovement playerMovement = other.GetComponent<PlayerMovement>();
+        //     Color temp = playerMovement.spriteRenderer.color;
+        //     temp.a -= 0.2f;
+        //     playerMovement.spriteRenderer.color = temp;
+        // }
+        // else if (other.CompareTag("PlayerWeapon"))
+        // {
+        //     // If projectile hits the player's weapon, destroy the projectile
+        //     Destroy(gameObject);
+        // }
         if (other.CompareTag("Player"))
         {
-            Rigidbody2D playerRb = other.GetComponent<Rigidbody2D>();
-            if (playerRb)
+            // Get velocity of the projectile
+            Rigidbody2D projRb = GetComponent<Rigidbody2D>();
+            Vector2 bulletVelocity = projRb != null ? projRb.linearVelocity : Vector2.zero;
+
+            // Apply knockback to the player
+            Player_Controls playerControls = other.GetComponent<Player_Controls>();
+            if (playerControls != null)
             {
-                direction = other.GetComponent<Rigidbody2D>().linearVelocity;
-                Initialize(direction, speed);
-                playerRb.AddForce(direction * pushForce, ForceMode2D.Impulse);
-                SpawnImpactEffect();
+                playerControls.ProjectileKnockback(bulletVelocity);
             }
-            Destroy(gameObject);
-        }
-        // Environment impact
-        else if (other.CompareTag("Planet") || other.CompareTag("Obstacle"))
-        {
-            SpawnImpactEffect();
+
             Destroy(gameObject);
         }
     }
 
-    void SpawnImpactEffect()
+    // Didn't know this existed till now, but this is called when the projectile goes off screen
+    void OnBecameInvisible()
     {
-        if (impactEffect)
-        {
-            Instantiate(impactEffect, transform.position, Quaternion.identity);
-        }
+        Destroy(gameObject);
     }
 }

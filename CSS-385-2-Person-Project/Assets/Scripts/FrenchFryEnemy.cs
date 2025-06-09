@@ -1,80 +1,83 @@
 using UnityEngine;
 
-public class FrenchFryEnemy : MonoBehaviour
+public class FrenchFryEnemy : Enemy
 {
-    [Header("References")]
-    public Transform planet;
-    public Transform player;
-    public GameObject projectilePrefab;
-    
-    [Header("Settings")]
-    public float moveSpeed = 1.5f;
-    public float rotationSpeed = 5f;
-    public float detectionRange = 7f;
-    public float fireRate = 2.5f;
-    public float projectileSpeed = 8f;
-    
-    private float fireTimer;
-    private Rigidbody2D rb;
+    // The target the enemy moves toward (not the player)
+    public Transform targetPosition;
 
-    void Start()
-    {
-        rb = GetComponent<Rigidbody2D>();
-        
-        if (!planet) planet = GameObject.FindGameObjectWithTag("Planet").transform;
-        if (!player) player = GameObject.FindGameObjectWithTag("Player").transform;
-        
-        fireTimer = Random.Range(0, fireRate);
-    }
+    // The player the enemy aims at
+    public Transform player;
+
+    // Projectile
+    public float fireForce = 10f;
+    public float fireRate = 1f;
+    public float detectionRadius = 5f;
+
+    public float desiredDistance = 3f;
+    public float moveSpeed = 2f;
+
+    private float fireCooldown = 0f;
 
     void Update()
     {
-        MoveTowardPlanet();
-        HandleShooting();
-    }
+        Vector2 moveDir = (targetPosition.position - transform.position).normalized;
+        transform.position += (Vector3)moveDir * moveSpeed * Time.deltaTime;
 
-    void MoveTowardPlanet()
-    {
-        Vector2 direction = (planet.position - transform.position).normalized;
-        rb.linearVelocity = direction * moveSpeed;
-        
-        if (rb.linearVelocity != Vector2.zero) {
-            float targetAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
-            Quaternion targetRotation = Quaternion.Euler(0, 0, targetAngle);
-            transform.rotation = Quaternion.Slerp(
-                transform.rotation, 
-                targetRotation, 
-                rotationSpeed * Time.deltaTime
-            );
+        float playerDistance = Vector2.Distance(transform.position, player.position);
+
+        if (playerDistance <= detectionRadius)
+        {
+            // Aim at the player
+            Vector2 shootDir = (player.position - transform.position).normalized;
+            float angle = Mathf.Atan2(shootDir.y, shootDir.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(0, 0, angle);
+
+            // Fire at the player if cooldown passed
+            fireCooldown -= Time.deltaTime;
+            if (fireCooldown <= 0f)
+            {
+                Fire(shootDir);
+                fireCooldown = 1f / fireRate;
+            }
         }
     }
 
-    void HandleShooting()
+    void Fire(Vector2 direction)
     {
-        fireTimer -= Time.deltaTime;
-        if (fireTimer > 0 || !player) return;
+        float spawnDistance = 0.6f;
+        Vector2 spawnPos = (Vector2)transform.position + direction * spawnDistance;
 
-        float distanceToPlayer = Vector2.Distance(transform.position, player.position);
-        if (distanceToPlayer <= detectionRange)
+        GameObject proj = Instantiate(enemyProjectile, spawnPos, Quaternion.identity);
+        Rigidbody2D rb = proj.GetComponent<Rigidbody2D>();
+        rb.linearVelocity = direction * fireForce;
+    }
+
+    public override void TakeDamage(Projectile projectile)
+    {
+        if (flashCoroutine != null)
         {
-            FireProjectile();
-            fireTimer = fireRate;
+            StopCoroutine(flashCoroutine);
+        }
+
+        flashCoroutine = StartCoroutine(FlashWhite());
+        health -= projectile.damage;
+
+        if (health <= 0)
+        {
+            Destroy(gameObject);
         }
     }
 
-    void FireProjectile()
+    public override void OnTriggerEnter2D(Collider2D other)
     {
-        Vector2 fireDirection = (player.position - transform.position).normalized;
-        GameObject projectile = Instantiate(
-            projectilePrefab, 
-            transform.position, 
-            Quaternion.identity
-        );
-        
-        FrenchFryProjectile projectileScript = projectile.GetComponent<FrenchFryProjectile>();
-        if (projectileScript)
+        if (other.CompareTag("Planet"))
         {
-            projectileScript.Initialize(fireDirection, projectileSpeed);
+            Destroy(gameObject);
+        }
+        else if (other.CompareTag("Projectile"))
+        {
+            Projectile projectile = other.GetComponent<Projectile>();
+            TakeDamage(projectile);
         }
     }
 }

@@ -8,6 +8,8 @@ TagManager:
   - Planet
   - Projectile
   - ShockwaveDetector
+  - Obstacle
+  - FrenchFryProjectile
   layers:
   - Default
   - TransparentFX

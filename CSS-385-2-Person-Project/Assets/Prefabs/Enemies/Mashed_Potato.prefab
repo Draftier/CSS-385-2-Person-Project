@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3666500724555945292}
   - component: {fileID: 7263263056283057441}
   - component: {fileID: 5264491889325290467}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Mashed_Potato
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 1523960897604873460}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.57, y: 3.71, z: 1.1168615}
+  m_LocalPosition: {x: 6.57, y: 3.71, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

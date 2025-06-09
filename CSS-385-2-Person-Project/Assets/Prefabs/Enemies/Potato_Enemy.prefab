@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5022319454694338632}
   - component: {fileID: 3363926557903154917}
   - component: {fileID: 9067727801749184806}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Potato_Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 5210614565071420881}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.46, y: 2.47, z: 0.06730292}
+  m_LocalPosition: {x: 5.46, y: 2.47, z: 0}
   m_LocalScale: {x: 0.4875, y: 0.4875, z: 0.4875}
   m_ConstrainProportionsScale: 1
   m_Children: []

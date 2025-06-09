@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class Player_Controls : MonoBehaviour
@@ -57,7 +58,7 @@ public class Player_Controls : MonoBehaviour
         FollowMouse();
         // Vector3 forward = transform.up;
 
-        
+
 
         // if (Input.GetKey(KeyCode.W))
         // {
@@ -138,5 +139,20 @@ public class Player_Controls : MonoBehaviour
 
         // Apply the impulse force once
         rb.AddForce(force, ForceMode2D.Impulse);
+    }
+
+    public void ProjectileKnockback(Vector2 bulletVel)
+    {
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        rb.AddForce(bulletVel.normalized * 20.0f, ForceMode2D.Impulse);
+    }
+
+    public void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("FrenchFryProjectile"))
+        {
+            Vector2 bulletDirection = other.GetComponent<Rigidbody2D>().linearVelocity;
+            ProjectileKnockback(bulletDirection);
+        }
     }
 }
